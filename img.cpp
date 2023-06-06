@@ -67,11 +67,16 @@ void matrix2BMP(int **matrix, int rows, int cols, int BlockSize, const char *fil
                 // 可以根据需要进行操作，如打印、修改等
                 if (matrix[i / BlockSize][j / BlockSize] == 0) {
                     imageData[(i * width + j) * 3 + k] = 255;
-                } else if (matrix[i / BlockSize][j / BlockSize] == 1){
+                } else if (matrix[i / BlockSize][j / BlockSize] == 1) {
                     imageData[(i * width + j) * 3 + k] = 105;
-                }else if (matrix[i / BlockSize][j / BlockSize] == 2){
+                } else if (matrix[i / BlockSize][j / BlockSize] == 2) {
                     imageData[(i * width + j) * 3 + k] = 0;
                 }
+            }
+            if (matrix[i / BlockSize][j / BlockSize] == 3) {
+                imageData[(i * width + j) * 3] = 255;
+                imageData[(i * width + j) * 3 + 1] = 0;
+                imageData[(i * width + j) * 3 + 2] = 0;
             }
         }
     }

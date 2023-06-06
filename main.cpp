@@ -133,7 +133,7 @@ public:
         }
     }
 
-    void drawPic() {
+    void drawPic(const char *filename) {
         int N = n + 2;
         int **image;
         image = new int *[N];
@@ -149,8 +149,11 @@ public:
                 image[i][j] = matrix[i - 1][j - 1];
             }
         }
+        image[1][1] = 3;
+        image[n][n] = 3;
+
         showMatrix(image, N, N);
-        matrix2BMP(image, N, N, 40, "/tmp/maze.bmp");
+        matrix2BMP(image, N, N, 40, filename);
     }
 
     void show() {
@@ -174,7 +177,7 @@ int main() {
     Maze m(31);
     m.create();
 //    m.show();
-    m.drawPic();
+    m.drawPic("/tmp/maze.bmp");
 }
 
 
