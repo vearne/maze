@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
-project(mybin)
+project(maze)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(mybin main.cpp img.cpp img.h)
+add_executable(maze main.cpp img.cpp img.h)
