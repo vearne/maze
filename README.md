@@ -4,5 +4,13 @@
 ## 注意:BMP文件有对齐规则
 Windows规定一个扫描行所占的字节数必须是4的倍数
 
+## 编译
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+
 ## 效果图
 ![maze.bmp](./maze.jpeg)
