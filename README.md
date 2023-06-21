@@ -6,10 +6,7 @@ Windows规定一个扫描行所占的字节数必须是4的倍数
 
 ## 编译
 ```
-mkdir build
-cd build
-cmake ..
-make
+sh build.sh
 ```
 
 ## 效果图
