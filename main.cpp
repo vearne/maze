@@ -1,8 +1,7 @@
 #include <iostream>
-#include <stack>
 #include <unordered_set>
 #include <unordered_map>
-#include <random>
+#include <ctime>
 
 using namespace std;
 
@@ -92,9 +91,9 @@ public:
         // 入口
         int entry = 0;
         int exit = (n - 1) * (n + 1);
-        cout << "------------------2-------------" << endl;
+//        cout << "------------------2-------------" << endl;
         while (nodeIDMap[entry] != nodeIDMap[exit]) {
-            cout << "############################" << endl;
+//            cout << "############################" << endl;
             int idx = rand() % edges.size();
             int edge = edges[idx];
             edges.erase(edges.begin() + idx);
@@ -108,8 +107,8 @@ public:
             int x = edge / n;
             int y = edge - n * x;
             matrix[x][y] = 0;
-            cout << "x=" << x << ",y=" << y << endl;
-            this->show();
+//            cout << "x=" << x << ",y=" << y << endl;
+//            this->show();
             int leftNode = (x - 1) * n + y;
             bool flag = false;
             if (x - 1 >= 0 && matrix[x - 1][y] == 0) {
@@ -152,7 +151,7 @@ public:
         image[1][1] = 3;
         image[n][n] = 3;
 
-        showMatrix(image, N, N);
+//        showMatrix(image, N, N);
         matrix2BMP(image, N, N, 40, filename);
     }
 
@@ -171,13 +170,40 @@ public:
 };
 
 
-int main() {
+int main(int argc, char* argv[]) {
+//	for(int i=0;i<argc;i++) {
+//		cout << "argument[" << i << "] is: " << argv[i] << endl;
+//	}
+	if(argc < 3){
+		cout<<"参数缺失: "<<"usage: ./maze 61 /tmp/maze.bmp"<<endl;
+		return -1;
+	}
     srand(time(0));
+	int n = 0;
+	try {
+		n = stoi(argv[1]);  // 转换 argv[1] 为整数
+	} catch (const std::invalid_argument& e) {
+		// 捕获无效输入异常（字符串不是合法数字）
+		cerr << "无效的输入，无法转换为整数: " << argv[1] << endl;
+		return -1;
+	} catch (const std::out_of_range& e) {
+		// 捕获数字超出范围的异常
+		cerr << "数字超出范围: " << argv[1] << endl;
+		return -1;
+	}
     // n 必须是奇数
-    Maze m(31);
+	if(n%2==0){
+		cout<<"参数格式错误："<<"n必须是一个奇数"<<endl;
+		return -1;
+	}
+
+	cout << "迷宫的大小为: " << n << "*" << n << endl;
+    Maze m(n);
     m.create();
 //    m.show();
-    m.drawPic("/tmp/maze.bmp");
+	cout << "迷宫图片位置: " << argv[2] << endl;
+    m.drawPic(argv[2]);
+	return 0;
 }
 
 
